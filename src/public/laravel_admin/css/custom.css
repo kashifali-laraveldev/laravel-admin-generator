@@ -1,0 +1,15 @@
+/*Toastr CSS*/
+#toast-container>.toast-success {
+    opacity: 1 !important;
+    /* font-size: 1.5rem !important; */
+}
+
+#toast-container>.toast-error {
+    opacity: 1 !important;
+    /* font-size: 1.5rem !important; */
+}
+
+#toast-container>.toast-info {
+    opacity: 1 !important;
+    /* font-size: 1.5rem !important; */
+}

@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.bg-image {
+    position: relative;
+    background-image: url('../images/bg-image-1.svg');
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-height: 500px;
+    background-size: fit-content;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bg-icon{
+    background-color: #72d85f;
+    border-radius: 50px;
+    padding: 30px;
+    width: 100px;
+    height: 100px;
+    color: #fff;
+    font-size: 20px;
+}
+
+.page-title {
+    font-size: 40px;
+    font-weight: 900;
+    color: #102662;
+}
+
+.button_slide {
+    color: #FFF;
+    border: 1px solid #fff;
+    background-color: #102662;
+    border-radius: 0px;
+    padding: 10px 36px;
+    display: inline-block;
+    font-size: 14px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 #41778F;
+    -webkit-transition: ease-out 1s;
+    -moz-transition: ease-out 1s;
+    transition: ease-out 1s;
+    border-radius: 5px;
+}
+
+.slide_right:hover {
+    box-shadow: inset 400px 0 0 0 #41778F;
+}
+
+.slide_left:hover {
+    box-shadow: inset 0 0 0 50px #41778F;
+}
+
+.slide_diagonal:hover {
+    box-shadow: inset 400px 50px 0 0 #41778F;
+}
+
+.auth-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 95vh;
+}
+
+.card-shadow {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.form-control:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border: 1px solid #46de50 !important;
+}
+
+.form-label {
+    font-size: 18px;
+    font-weight: 700 !important;
+    margin-bottom: 2px !important;
+}
+
+.py-10 {
+    padding: 10px !important;
+}
+
+.nav-link{
+    color: #1ac30b !important;
+}
+
+.nav-link:hover{
+    color: #1e3e9f !important;
+}

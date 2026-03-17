@@ -1,0 +1,4 @@
+php artisan vendor:publish --tag=public --provider=LaravelAdminServiceProvider
+
+<link rel="stylesheet" type="text/css" href="{{ asset('vendor/your-package/css/your-style.css') }}">
+<script src="{{ asset('vendor/your-package/js/your-script.js') }}"></script>
