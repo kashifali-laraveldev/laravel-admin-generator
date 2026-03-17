@@ -1,295 +1,236 @@
-# Laravel Administration
+# ⚡ Laravel Admin Generator
+
+![Laravel Admin Generator](src/readme-assets/images/laravel_administration_portal.jpg)
+
+[![Total Downloads](https://img.shields.io/packagist/dt/bitsoftsol/laravel-administration?style=flat-square)](https://packagist.org/packages/bitsoftsol/laravel-administration)
+[![Latest Stable Version](https://img.shields.io/packagist/v/bitsoftsol/laravel-administration?style=flat-square)](https://packagist.org/packages/bitsoftsol/laravel-administration)
+[![License](https://img.shields.io/packagist/l/bitsoftsol/laravel-administration?style=flat-square)](https://opensource.org/licenses/MIT)
+[![PHP Version](https://img.shields.io/badge/PHP-8.x-blue?style=flat-square&logo=php)](https://php.net)
+[![Laravel Version](https://img.shields.io/badge/Laravel-10%20|%2011-red?style=flat-square&logo=laravel)](https://laravel.com)
+
+> **Stop writing repetitive CRUD code. Let Laravel Admin Generator do it for you.**
+
+A powerful Laravel package that **automatically generates** a full-featured Admin Panel, CRUD operations, and RESTful APIs — just by adding a trait to your model. No boilerplate. No repetition. Just results.
+
+---
+
+## ✨ Why Laravel Admin Generator?
+
+Most Laravel projects waste days building the same admin panels over and over. This package eliminates that entirely.
+
+| Without This Package | With Laravel Admin Generator |
+|---|---|
+| Write controllers manually | ✅ Auto-generated controllers |
+| Build CRUD views from scratch | ✅ Auto-generated Blade views |
+| Define API routes one by one | ✅ RESTful APIs auto-registered |
+| Setup auth & roles yourself | ✅ Built-in auth & role management |
+| Hours of repetitive work | ✅ Running in minutes |
+
+---
+
+## 🚀 Features
+
+- ⚡ **Automatic CRUD Generation** — Full Create, Read, Update, Delete out of the box
+- 🔌 **RESTful API Generation** — Auto-registered API endpoints for every model
+- 🏗️ **Visual Schema Builder** — Create models & migrations from the browser UI
+- ✏️ **Live Code Editor** — Edit model and migration files directly in the browser
+- 🔐 **Authentication & Role Management** — Built-in user auth with role-based access
+- 🖼️ **Image Field Support** — Automatic file upload handling (suffix field with `_image`)
+- 📦 **Postman Collection Included** — Ready-to-use API collection for instant testing
+- 🎨 **Clean Admin UI** — Modern, responsive dashboard out of the box
+
+---
+
+## 📦 Installation
+
+### Step 1 — Create Laravel Project
+```bash
+composer create-project laravel/laravel my-project
+cd my-project
+```
+
+### Step 2 — Install Package
+```bash
+composer require bitsoftsol/laravel-administration
+```
+
+### Step 3 — Register Service Provider
+In `config/app.php`, add to the `providers` array:
+```php
+Bitsoftsol\LaravelAdministration\LaravelAdminServiceProvider::class,
+```
+
+### Step 4 — Publish Vendor Files
+```bash
+php artisan vendor:publish
+# Select LaravelAdminServiceProvider when prompted
+```
+
+### Step 5 — Install Frontend Assets
+```bash
+npm install && npm run dev
+```
+
+### Step 6 — Configure Database
+Set your database credentials in `.env`:
+```env
+DB_DATABASE=your_database
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+```
+
+### Step 7 — Run Migrations & Seed
+```bash
+php artisan migrate --seed
+```
+
+### Step 8 — Enable Auth Routes
+In `routes/web.php`:
+```php
+Auth::routes();
+```
 
-![Laravel Logo](src/readme-assets/images/laravel_administration_portal.jpg)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/framework)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/framework)](https://packagist.org/packages/laravel/framework)
-[![License](https://img.shields.io/packagist/l/laravel/framework)](https://opensource.org/licenses/MIT)
+### Step 9 — Serve & Access
+```bash
+php artisan serve
+```
+Visit: `http://127.0.0.1:8000/admin`
 
-## About Laravel Administration
+**Default Login:**
+```
+Email:    admin@bitsoftsol.com
+Password: bitsoftsol123
+```
 
-Laravel Administration is a powerful package designed to simplify the development of Laravel applications by automating common CRUD (Create, Read, Update, Delete) operations. With this package, you can create models effortlessly and enjoy automatic route generation, views, and controller logic.
+### Step 10 — Create Your Superuser
+```bash
+php artisan createsuperuser
+```
+Follow the prompts to set username, email, and password.
 
-## Features
+---
 
-- Automatic CRUD operations.
-- RESTful API generation.
-- Easy-to-use schema builder for advanced customization.
-- User authentication and role management.
-- MIT-licensed open-source software.
+## 🛠️ Usage — Auto CRUD in 3 Steps
 
-## Installation Guide
+Let's say you want full CRUD for a `Seller` model:
 
-To get started with Laravel Administration, follow these steps:
+**Step 1 — Generate Model & Migration**
+```bash
+php artisan make:model Seller -m
+```
 
-0. **Create a Laravel Project**:
+**Step 2 — Add Traits to Your Model**
+```php
+<?php
 
-   ```sh
-   composer create-project laravel/laravel LaravelAdministration
+namespace App\Models;
 
-1. **Install LaravelAdministration Package**:
+use Illuminate\Database\Eloquent\Model;
+use Bitsoftsol\LaravelAdministration\Traits\LaravelAdmin;
+use Bitsoftsol\LaravelAdministration\Traits\LaravelAdminAPI;
 
-    Install the LaravelAdministration package using Composer:
+class Seller extends Model
+{
+    use LaravelAdmin;      // Enables web CRUD panel
+    use LaravelAdminAPI;   // Enables REST API endpoints
 
-   ```sh
-   composer require bitsoftsol/laravel-administration
+    protected $fillable = [
+        'name',
+        'email', 
+        'city',
+        'country',
+        'profile_image'   // _image suffix = auto file upload
+    ];
+}
+```
 
-2. **Add LaravelAdminServiceProvider**:
+**Step 3 — Run Migration**
+```bash
+php artisan migrate
+```
 
-    Open the `config/app.php` file and add the LaravelAdministration service provider to the `providers` array:
+✅ **That's it.** Visit `/admin` — your full CRUD panel is ready. APIs are live too.
 
-   ```php
-   'providers' => [
-       // ...
-       Bitsoftsol\LaravelAdministration\LaravelAdminServiceProvider::class,
-   ],
+---
 
-3. **Publish Vendor Files**:
+## 🌐 Auto-Generated REST APIs
 
-    Run the following Artisan command to publish vendor files:
-    Select the `LaravelAdminServiceProvider` when prompted.
+Once `LaravelAdminAPI` trait is added, these endpoints are automatically available:
 
-   ```sh
-   php artisan vendor:publish
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/api/admin/login` | Authentication |
+| `GET` | `/api/admin/crud/models` | List all models |
+| `GET` | `/api/admin/crud/{model_id}` | List records |
+| `GET` | `/api/admin/crud/{model_id}/{id}` | Get single record |
+| `POST` | `/api/admin/crud/{model_id}` | Create record |
+| `PUT` | `/api/admin/crud/{model_id}` | Update record |
+| `DELETE` | `/api/admin/crud/{model_id}/{id}` | Delete record |
 
-4. **Install Frontend Assets**:
+📬 **Postman Collection included** — import and test instantly:
+[Download Collection](src/readme-assets/postman/Laravel-Administration.postman_collection.json)
 
-    Run the following commands to build assets:
+---
 
-   ```sh
-   npm install
-   npm run dev
+## 🏗️ Visual Schema Builder
 
-5. **Set Database Connection**:
+Prefer a GUI? Use the built-in Schema Builder — no terminal needed.
 
-    Configure your database connection by setting the database name in your `.env` file.
+1. Visit `http://127.0.0.1:8000/admin/crud-schema/create`
+2. Enter your model name (e.g. `Product`)
+3. Define fields visually — add columns, set types, enable image upload
+4. Click **Migrate** — table created, CRUD panel live instantly
 
-6. **Run Migrations**:
+**Live Code Editor** — click "Open Editor" on any schema to edit migration and model files directly in the browser before migrating.
 
-    Execute the database migrations and seed data:
+---
 
-   ```sh
-   php artisan migrate --seed
+## 🔐 Authentication & Roles
 
-7. **Enable Authentication Routes**:
+Laravel Admin Generator ships with a complete auth system:
 
-    Add the following line inside your `routes/web.php` file:
+- Secure login with session management
+- Role-based access control (Admin, Superuser)
+- `createsuperuser` artisan command for quick setup
+- Middleware-protected admin routes out of the box
 
-   ```php
-   Auth::routes();
+---
 
-8. **Serve Your Project**:
+## 📋 Requirements
 
-    Serve your Laravel project:
+| Requirement | Version |
+|---|---|
+| PHP | 8.0+ |
+| Laravel | 10.x / 11.x |
+| MySQL | 5.7+ / 8.x |
+| Node.js | 16+ |
 
-   ```sh
-   php artisan serve
+---
 
-9. **Access Laravel Administration**:
+## 🗺️ Roadmap
 
-    Open your browser and access the URL `(host)/admin` (e.g., `http://127.0.0.1:8000/admin`).
+- [ ] Multi-language / localization support
+- [ ] Custom theme builder
+- [ ] Excel / CSV import-export per model
+- [ ] API rate limiting controls
+- [ ] SaaS multi-tenancy support
 
-10. **Login Credentials**:
+---
 
-    Use the following credentials to log in:
-       + Username: admin@bitsoftsol.com
-       + Password: bitsoftsol123
+## 👨‍💻 Author
 
-11. **Create a Superuser**:
+**Kashif Ali** — Laravel Backend Specialist with 5+ years building enterprise SaaS platforms and APIs.
 
-    To create a superuser for your Laravel application, follow these steps:
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/your-profile)
+[![Packagist](https://img.shields.io/badge/Packagist-View%20Package-F28D1A?style=for-the-badge&logo=composer)](https://packagist.org/packages/bitsoftsol/laravel-administration)
+[![Email](https://img.shields.io/badge/Hire%20Me-Email-D14836?style=for-the-badge&logo=gmail)](mailto:alikashi54321@gmail.com)
 
-     * Open your terminal and navigate to the root directory of your Laravel project.
-   
-     * Run the following command:
-   
-      ```sh
-      php artisan createsuperuser
-     
-The `createsuperuser` command will prompt you to provide the following information:
+---
 
-* __Username__: Choose a unique username for the superuser.
-* __Email__: Enter the email address associated with the superuser.
-* __Password__: Set a secure password for the superuser.
-* __Confirm Password__: Re-enter the password for confirmation.
+## 📄 License
 
-+ After successfully providing the required information, the superuser account will be created.
-+ You can now use the provided username and password to log in as the superuser and access the admin privileges.
-+ Creating a superuser allows you to manage and control various aspects of your Laravel application with elevated permissions.
+Laravel Admin Generator is open-source software licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
-12. **Congratulations!**:
+---
 
-    If you can log in and access the Laravel Administration dashboard, congratulations! You have successfully installed Laravel Administration.
-
-## Usage Guide
-
-In this section, we will guide you through performing automatic CRUD operations for the `Seller` model using Laravel Administration.
-
-0. **Generate the Seller Model:**
-
-   Run the following Artisan command to create the `Seller` model along with its migration file:
-
-      ```bash
-      php artisan make:model Seller -m
-
-0. **Define Seller Table Fields:**
-
-   Inside the generated migration file, define the `Seller` table fields, including `name`, `email`, `city`, `country`, and `profile_image`.
-
-1. **Add LaravelAdmin and LaravelAdminAPI Traits:**
-
-   Inside the generated migration file, define the `Seller` table fields, including `name`, `email`, `city`, `country`, and `profile_image`.
-   Enhance the functionality of your `Seller` model by importing the `LaravelAdmin` and `LaravelAdminAPI` traits.
-   + Import the `LaravelAdmin` Trait at the top of the `Seller` model class:
-
-      ```php
-      use Bitsoftsol\LaravelAdministration\Traits\LaravelAdmin;
-
-   + Import the __`LaravelAdminAPI`__ Trait on top of the __`Seller`__ model class:
-
-      ```php
-      use Bitsoftsol\LaravelAdministration\Traits\LaravelAdminAPI;
-
-   + Add these two lines inside the `Seller` model class to include the traits:
-
-      ```php
-      use LaravelAdmin;
-      use LaravelAdminAPI;
-
-2. **Define Fillable Fields:**
-
-   In the `Seller` model class, ensure that you add the field names to the __`fillable`__ array:
-      
-      ```php
-      protected $fillable = [ "name", "email", "city", "country", "profile_image" ];
-
-3. **Run Migrations:**
-
-   Execute the migration to create the __`sellers`__ table in your database:
-      
-      ```bash
-      php artisan migrate
-
-4. **Access the Admin Panel:**
-
-   Open your web browser and visit __`http://127.0.0.1:8000/admin`__. This is where you can manage your sellers with CRUD operations.
-
-5. **Congratulations!**
-
-   You are now able to perform CRUD operations on the __`Seller`__ model without the need for extensive coding.
-
-   This guide empowers you to efficiently manage your sellers in your Laravel application.
-   
-
-## Postman Guide
-
-To use CRUD APIs for the `Seller` model, follow these steps:
-
-1. **Import the Postman Collection:**
-
-   Import the provided Postman collection to access the CRUD APIs efficiently. You can download it from here: [Postman Collection - Laravel Administration](src/readme-assets/postman/Laravel-Administration.postman_collection.json).
-
-2. **Import the Environment Variables:**
-
-   Import the environment variables configuration into Postman for seamless testing. You can download it from here: [Postman Environment - Laravel Administration](src/readme-assets/postman/Laravel-Administration.postman_environment.json).
-
-3. **Set the Host Variable:**
-
-   In Postman, configure the `host` variable to match your application's URL, typically something like `http://127.0.0.1:8000`.
-
-4. **Access the Login API:**
-
-   Make a POST request to the following API endpoint to log in:
-
-   - **API Endpoint:** `(host)/api/admin/login`
-   - **Credentials:**
-     - **Username:** admin@bitsoft.com
-     - **Password:** bitsoft123
-
-   After a successful login, you will receive an authentication token.
-
-5. **Set the Token Environment Variable:**
-
-   Once you receive the authentication token upon login, set it as the `(token)` environment variable in Postman for subsequent API requests.
-
-6. **Fetch the Model ID:**
-
-   Retrieve the `model_id` for the `Seller` model from the following API endpoint:
-
-   - **API Endpoint:** `{{host}}/api/admin/crud/models`
-
-   Set the obtained `model_id` as the `(model_id)` environment variable in Postman.
-
-7. **Access CRUD APIs for the Seller Model:**
-
-   You can now access the CRUD APIs for the `Seller` model using the environment variables:
-
-   - **Listing of Seller API:** `{{host}}/api/admin/crud/{{model_id}}`
-   - **Detail of Seller API:** `{{host}}/api/admin/crud/{{model_id}}/2` (where 2 represents the seller's ID)
-   - **Store Seller API:** `{{host}}/api/admin/crud/{{model_id}}`
-   - **Update Seller API:** `{{host}}/api/admin/crud/{{model_id}}` (include the seller's ID in the form-data within the body tab of Postman)
-   - **Delete Seller API:** `{{host}}/api/admin/crud/{{model_id}}/3` (where 3 represents the seller's ID)
-
-8. **Congratulations!**
-
-   You can now perform CRUD operations on the `Seller` model without the need for additional coding. Enjoy the convenience of Laravel Administration for managing your sellers efficiently.
-
-## Schema Builder
-
-In the Laravel Administration application, you can effortlessly create the `Seller` model and its associated migration file using the Schema Builder. Here's how:
-
-1. Access the Schema Builder:
-   - Navigate to `(host)/admin/crud-schema/create` in your web browser, replacing `(host)` with your application's URL.
-
-2. Enter the Model Name:
-   - On the provided page, input 'Seller' as the model name.
-
-3. Submission:
-   - Click the 'Submit' button to initiate the generation of the `Seller` model and its corresponding migration file in your project.
-
-Upon successful creation, you'll be redirected to the Schema Builder list. Here, you can find the 'Seller' model in the list.
-
-### Managing Your Schema
-
-- **Deleting Schema:**
-  - To remove the 'Seller' model and its migration file from your project, click the 'Delete' button.
-
-- **Defining Schema Fields:**
-  - By clicking the 'Create Schema' button, you'll access a view where you can define the fields of the 'Seller' migration, including the ability to add more fields. If you wish to include image fields in the migration, ensure you suffix column names with '_image.'
-
-- **LaravelAdmin Trait:**
-  - On the 'Create Schema' view, you can select whether to use the 'LaravelAdmin' Trait by ticking the checkbox. If chosen, the trait will be automatically imported when defining seller field names.
-
-### Editing Schema
-
-After creating the schema, you'll find an 'Open Editor' button in the 'Seller' row within the Schema Builder listing. Clicking this button will redirect you to a Visual Code Editor view, allowing you to edit the 'Seller' migration and model files.
-
-- **LaravelAdminAPI and LaravelAdmin Traits:**
-  - In the live editor, you can use the 'LaravelAdminAPI' Trait if required, and include the 'LaravelAdmin' Trait if desired. These traits will enable you to access CRUD routes for the Seller model, both through web and API interfaces.
-
-- **Defining Fillable Fields:**
-  - Set the fields of the 'sellers' table in the `fillable` array. These fields will be displayed in the Seller listing view.
-
-### Migration
-
-After editing the model and migration files, you can click on the 'Migrate' button to apply the changes to your table. Once the seller table is migrated, you will no longer be able to open the editor or perform migrations, but you can still delete.
-
-### CRUD Operations
-
-- **LaravelAdmin Trait:**
-  - If you have included the 'LaravelAdmin' Trait in your Seller model, you can access Seller CRUD operations via the 'CRUD' tab on the web interface.
-
-- **LaravelAdminAPI Trait:**
-  - If you have included the 'LaravelAdminAPI' Trait in your Seller model, you can access Seller CRUD operation APIs using the Postman Collection.
-
-
-__Congratulations!__, you've now completed the LaravelAdministration documentation. You're all set to make the most of this powerful tool for Laravel development. Happy coding!
-
-
-
-
-
-
-
-
-
-# laravel-administration
+*If this package saved you time, consider giving it a ⭐ — it helps others discover it too!*
