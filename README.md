@@ -241,7 +241,6 @@ Laravel Admin Generator ships with a complete auth system:
 **Kashif Ali** — Laravel Backend Specialist with 5+ years building enterprise SaaS platforms and APIs.
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/kashif-ali-39659518a/)
-[![Packagist](https://img.shields.io/badge/Packagist-View%20Package-F28D1A?style=for-the-badge&logo=composer)](https://packagist.org/packages/bitsoftsol/laravel-administration)
 [![Email](https://img.shields.io/badge/Hire%20Me-Email-D14836?style=for-the-badge&logo=gmail)](mailto:alikashi54321@gmail.com)
 
 ---
