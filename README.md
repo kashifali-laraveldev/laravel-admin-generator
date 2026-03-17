@@ -18,13 +18,13 @@ A powerful Laravel package that **automatically generates** a full-featured Admi
 
 Most Laravel projects waste days building the same admin panels over and over. This package eliminates that entirely.
 
-| Without This Package | With Laravel Admin Generator |
-|---|---|
-| Write controllers manually | ✅ Auto-generated controllers |
-| Build CRUD views from scratch | ✅ Auto-generated Blade views |
-| Define API routes one by one | ✅ RESTful APIs auto-registered |
-| Setup auth & roles yourself | ✅ Built-in auth & role management |
-| Hours of repetitive work | ✅ Running in minutes |
+| Without This Package          | With Laravel Admin Generator       |
+| ----------------------------- | ---------------------------------- |
+| Write controllers manually    | ✅ Auto-generated controllers      |
+| Build CRUD views from scratch | ✅ Auto-generated Blade views      |
+| Define API routes one by one  | ✅ RESTful APIs auto-registered    |
+| Setup auth & roles yourself   | ✅ Built-in auth & role management |
+| Hours of repetitive work      | ✅ Running in minutes              |
 
 ---
 
@@ -44,35 +44,43 @@ Most Laravel projects waste days building the same admin panels over and over. T
 ## 📦 Installation
 
 ### Step 1 — Create Laravel Project
+
 ```bash
 composer create-project laravel/laravel my-project
 cd my-project
 ```
 
 ### Step 2 — Install Package
+
 ```bash
 composer require bitsoftsol/laravel-administration
 ```
 
 ### Step 3 — Register Service Provider
+
 In `config/app.php`, add to the `providers` array:
+
 ```php
 Bitsoftsol\LaravelAdministration\LaravelAdminServiceProvider::class,
 ```
 
 ### Step 4 — Publish Vendor Files
+
 ```bash
 php artisan vendor:publish
 # Select LaravelAdminServiceProvider when prompted
 ```
 
 ### Step 5 — Install Frontend Assets
+
 ```bash
 npm install && npm run dev
 ```
 
 ### Step 6 — Configure Database
+
 Set your database credentials in `.env`:
+
 ```env
 DB_DATABASE=your_database
 DB_USERNAME=your_username
@@ -80,32 +88,40 @@ DB_PASSWORD=your_password
 ```
 
 ### Step 7 — Run Migrations & Seed
+
 ```bash
 php artisan migrate --seed
 ```
 
 ### Step 8 — Enable Auth Routes
+
 In `routes/web.php`:
+
 ```php
 Auth::routes();
 ```
 
 ### Step 9 — Serve & Access
+
 ```bash
 php artisan serve
 ```
+
 Visit: `http://127.0.0.1:8000/admin`
 
 **Default Login:**
+
 ```
 Email:    admin@bitsoftsol.com
 Password: bitsoftsol123
 ```
 
 ### Step 10 — Create Your Superuser
+
 ```bash
 php artisan createsuperuser
 ```
+
 Follow the prompts to set username, email, and password.
 
 ---
@@ -115,11 +131,13 @@ Follow the prompts to set username, email, and password.
 Let's say you want full CRUD for a `Seller` model:
 
 **Step 1 — Generate Model & Migration**
+
 ```bash
 php artisan make:model Seller -m
 ```
 
 **Step 2 — Add Traits to Your Model**
+
 ```php
 <?php
 
@@ -136,7 +154,7 @@ class Seller extends Model
 
     protected $fillable = [
         'name',
-        'email', 
+        'email',
         'city',
         'country',
         'profile_image'   // _image suffix = auto file upload
@@ -145,6 +163,7 @@ class Seller extends Model
 ```
 
 **Step 3 — Run Migration**
+
 ```bash
 php artisan migrate
 ```
@@ -157,15 +176,15 @@ php artisan migrate
 
 Once `LaravelAdminAPI` trait is added, these endpoints are automatically available:
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `POST` | `/api/admin/login` | Authentication |
-| `GET` | `/api/admin/crud/models` | List all models |
-| `GET` | `/api/admin/crud/{model_id}` | List records |
-| `GET` | `/api/admin/crud/{model_id}/{id}` | Get single record |
-| `POST` | `/api/admin/crud/{model_id}` | Create record |
-| `PUT` | `/api/admin/crud/{model_id}` | Update record |
-| `DELETE` | `/api/admin/crud/{model_id}/{id}` | Delete record |
+| Method   | Endpoint                          | Description       |
+| -------- | --------------------------------- | ----------------- |
+| `POST`   | `/api/admin/login`                | Authentication    |
+| `GET`    | `/api/admin/crud/models`          | List all models   |
+| `GET`    | `/api/admin/crud/{model_id}`      | List records      |
+| `GET`    | `/api/admin/crud/{model_id}/{id}` | Get single record |
+| `POST`   | `/api/admin/crud/{model_id}`      | Create record     |
+| `PUT`    | `/api/admin/crud/{model_id}`      | Update record     |
+| `DELETE` | `/api/admin/crud/{model_id}/{id}` | Delete record     |
 
 📬 **Postman Collection included** — import and test instantly:
 [Download Collection](src/readme-assets/postman/Laravel-Administration.postman_collection.json)
@@ -198,12 +217,12 @@ Laravel Admin Generator ships with a complete auth system:
 
 ## 📋 Requirements
 
-| Requirement | Version |
-|---|---|
-| PHP | 8.0+ |
-| Laravel | 10.x / 11.x |
-| MySQL | 5.7+ / 8.x |
-| Node.js | 16+ |
+| Requirement | Version     |
+| ----------- | ----------- |
+| PHP         | 8.0+        |
+| Laravel     | 10.x / 11.x |
+| MySQL       | 5.7+ / 8.x  |
+| Node.js     | 16+         |
 
 ---
 
@@ -221,7 +240,7 @@ Laravel Admin Generator ships with a complete auth system:
 
 **Kashif Ali** — Laravel Backend Specialist with 5+ years building enterprise SaaS platforms and APIs.
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/your-profile)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin)](<https://linkedin.com/in/[your-profile](https://www.linkedin.com/in/kashif-ali-39659518a/)>)
 [![Packagist](https://img.shields.io/badge/Packagist-View%20Package-F28D1A?style=for-the-badge&logo=composer)](https://packagist.org/packages/bitsoftsol/laravel-administration)
 [![Email](https://img.shields.io/badge/Hire%20Me-Email-D14836?style=for-the-badge&logo=gmail)](mailto:alikashi54321@gmail.com)
 
@@ -233,4 +252,4 @@ Laravel Admin Generator is open-source software licensed under the [MIT License]
 
 ---
 
-*If this package saved you time, consider giving it a ⭐ — it helps others discover it too!*
+_If this package saved you time, consider giving it a ⭐ — it helps others discover it too!_
