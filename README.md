@@ -244,7 +244,7 @@ I'm available for freelance and contract projects. If you need a custom POS syst
 |---|---|
 | 📧 **Email** | [alikashi54321@gmail.com](mailto:alikashi54321@gmail.com) |
 | 💼 **LinkedIn** | [linkedin.com/in/kashif-ali-39659518a](https://www.linkedin.com/in/kashif-ali-39659518a) |
-| 🌐 **Portfolio** | [kashifali-laraveldev.kitsoftsol.com](http://kashifali-laraveldev.kitsoftsol.com) |
+| 🌐 **Portfolio** | [kashifali-laraveldev.kitsoftsol.com](http://kashifali.kitsoftsol.com) |
 | 📱 **WhatsApp / Phone** | [+92 305 750 2419](https://wa.me/923057502419) |
 
 ---
