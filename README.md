@@ -236,19 +236,17 @@ Laravel Admin Generator ships with a complete auth system:
 
 ---
 
-## 👨‍💻 Author
+## 📬 Contact & Hire Me
 
-**Kashif Ali** — Laravel Backend Specialist with 5+ years building enterprise SaaS platforms and APIs.
+I'm available for freelance and contract projects. If you need a custom POS system, e-commerce backend, REST API, or any Laravel/Vue.js application — let's talk.
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/kashif-ali-39659518a/)
-[![Email](https://img.shields.io/badge/Hire%20Me-Email-D14836?style=for-the-badge&logo=gmail)](mailto:alikashi54321@gmail.com)
-
----
-
-## 📄 License
-
-Laravel Admin Generator is open-source software licensed under the [MIT License](https://opensource.org/licenses/MIT).
+| | |
+|---|---|
+| 📧 **Email** | [alikashi54321@gmail.com](mailto:alikashi54321@gmail.com) |
+| 💼 **LinkedIn** | [linkedin.com/in/kashif-ali-39659518a](https://www.linkedin.com/in/kashif-ali-39659518a) |
+| 🌐 **Portfolio** | [kashifali-laraveldev.kitsoftsol.com](http://kashifali-laraveldev.kitsoftsol.com) |
+| 📱 **WhatsApp / Phone** | [+92 305 750 2419](https://wa.me/923057502419) |
 
 ---
 
-_If this package saved you time, consider giving it a ⭐ — it helps others discover it too!_
+> *Built with ❤️ by Kashif Ali — Laravel Developer*
